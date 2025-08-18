@@ -1,5 +1,5 @@
 # Sign Up Form
-> Html & Css Setup
-> Form Sign up client side validations
+> Html & Css Setup.
+> Sign up Form with client side validations.
 
 By Odin Project [https://www.theodinproject.com] task 
