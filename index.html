@@ -11,12 +11,147 @@
         <section class="banner">
             <video class="nature-video" src="nature-video.mp4" muted autoplay loop></video>
             <div class="overlay">
-                <h1>We Love Nature!</h1>
+                <h1 class="logo"><a href="index.html">🌿 NatureFund</a></h1>
+            </div>
+            <div class="credit">
+                <p>Video By Mixkit from <a href="https://mixkit.co/" target="_blank" title="Go to Website">mixkit.co</a></p>
             </div>
         </section>
-        <form class="signup-form" action="/" method="post">
-            
-        </form>
+        <section class="content">
+            <header>
+                <p>The environment is not separate from us — it is our home, our food, our water, and our future. As forests shrink, species disappear, and the climate shifts, we are reminded that protecting nature is the same as protecting our own lives.</p>
+                <p>By <em>signing up</em> you add to a movement that grows stronger. Fill out the form below and take your step toward <em>change</em>.</p>
+            </header>
+            <form class="signup-form" action="index.php" method="post">
+                <fieldset>
+                    <legend>Let's do this</legend>
+                    <p>Required Fields are specified with <span aria-label="Required">*</span></p>
+                    <div class="widgets">
+                        <div>
+                            <label for="fname">First Name <span aria-label="Required">*</span></label>
+                            <input type="text" minlength="3" name="fname" id="fname" required autofocus placeholder="First Name *">
+                            <span></span>
+                        </div>
+    
+                        <div>
+                            <label for="lname">Last Name <span aria-label="Required">*</span></label>
+                            <input type="text" minlength="3" name="lname" id="lname" required placeholder="Last Name *">
+                            <span></span>
+                        </div>
+
+                        <div>
+                            <label for="email">Email <span aria-label="Required">*</span></label>
+                            <input type="email" name="email" id="email" required autocomplete="email" placeholder="Email *">
+                            <span></span>
+                        </div>
+
+                        <div>
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" name="phoneNumber" id="phone" placeholder="Phone Number">
+                            <span></span>
+                        </div>
+
+                        <div>
+                            <input class="pwd" type="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9\s]).{8,}$" name="password" id="password" required placeholder="Password *">
+                            <label for="password">Password <span aria-label="Required">*</span></label>
+                            <span></span>
+                            <div class="validate-pwd">
+                                <p class="min-length">Min Length: At least 8 characters.</p>
+                                <p class="uppercase">At least one uppercase letter</p>
+                                <p class="lowercase">One lowercase letter</p>
+                                <p class="digit">One digit</p>
+                                <p class="special-character">One special character</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="confirm-password">Confirm Password <span aria-label="Required">*</span></label>
+                            <input class="confirmPwd" type="password" name="confirmPassword" id="confirm-password" required placeholder="Confirm Password *">
+                            <span></span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <section class="submit-section">
+                    <button type="submit">Create Account</button>
+                    <p>Already have an account? <a href="#">Log in</a></p>
+                </section>
+            </form>
+        </section>
     </div>
+
+    <!-- // Password Pattern Matching Script -->
+    <script>
+        const pwd = document.querySelector('.pwd');
+        const confirmPwd = document.querySelector('.confirmPwd');
+        const form = document.querySelector('form')
+        const minLength = document.querySelector('.min-length')
+        const upperCase = document.querySelector('.uppercase')
+        const lowerCase = document.querySelector('.lowercase')
+        const digit = document.querySelector('.digit')
+        const specialCharacter = document.querySelector('.special-character')
+
+        let isInValid = false;
+        pwd.addEventListener('input', checkValue);
+        confirmPwd.addEventListener('input', checkValue);
+    
+        form.addEventListener('submit', e => {
+            if (isInValid) e.preventDefault()
+        })
+
+        function checkValue(e) {
+            const value1 = pwd.value;
+            const value2 = confirmPwd.value;
+            if (value1 === value2) {
+                pwd.classList.remove('invalid')
+                confirmPwd.classList.remove('invalid')
+                pwd.classList.add('valid')
+                confirmPwd.classList.add('valid')
+            } else {
+                isInValid = true;
+                pwd.classList.remove('valid')
+                confirmPwd.classList.remove('valid')
+                pwd.classList.add('invalid')
+                confirmPwd.classList.add('invalid')
+            }
+            validatePassword(e)
+        }
+
+        function validatePassword(e) {
+            const password = pwd.value.toString();
+            
+            if (password.length >= 8) minLength.classList.add('validated') 
+            else if (minLength.classList.contains('validated') && !(password.length >= 8)) minLength.classList.remove('validated')
+
+            if (hasUpperCase(password)) upperCase.classList.add('validated') 
+            else if (upperCase.classList.contains('validated') && !(hasUpperCase(password))) upperCase.classList.remove('validated')
+
+            if (hasLowerCase(password)) lowerCase.classList.add('validated') 
+            else if (lowerCase.classList.contains('validated') && !(hasLowerCase(password))) lowerCase.classList.remove('validated')
+
+            if (hasDigit(password)) digit.classList.add('validated') 
+            else if (digit.classList.contains('validated') && !(hasDigit(password))) digit.classList.remove('validated')
+
+            if (hasSpecialChar(password)) specialCharacter.classList.add('validated') 
+            else if (specialCharacter.classList.contains('validated') && !(hasSpecialChar(password))) specialCharacter.classList.remove('validated')
+        }
+
+        function hasUpperCase(str) {
+            return /[A-Z]/.test(str);
+        }
+
+        function hasLowerCase(str) {
+            return /[a-z]/.test(str);
+        }
+
+        function hasDigit(str) {
+            return /\d/.test(str);
+        }
+
+        function hasSpecialChar(str) {
+            const specialCharsRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]/;
+            return specialCharsRegex.test(str);
+        }
+    </script>
 </body>
 </html>
