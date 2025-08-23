@@ -23,7 +23,7 @@ ul {
 :root {
     --primary-green: #d2e0d2;
     --primary-darkgreen: #596D48;
-    --border-input: #E5E7EB;
+    --border-input: #bbbdc2;
     --focus-input: #007bff80;
     --invalid-input: #d34a4a;
 }
@@ -98,7 +98,7 @@ body {
 
 .content fieldset {
     padding: 1em 2.2em 1.5em;
-    background-color: #fff;
+    background-color: whitesmoke;
     border: none;
     box-shadow: 0 1em 1em 0.1em rgba(0, 0, 0, 0.12);
 }

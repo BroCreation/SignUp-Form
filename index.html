@@ -11,7 +11,7 @@
         <section class="banner">
             <video class="nature-video" src="nature-video.mp4" muted autoplay loop></video>
             <div class="overlay">
-                <h1 class="logo"><a href="index.html">🌿 NatureFund</a></h1>
+                <h1 class="logo"><a href="/">🌿 NatureFund</a></h1>
             </div>
             <div class="credit">
                 <p>Video By Mixkit from <a href="https://mixkit.co/" target="_blank" title="Go to Website">mixkit.co</a></p>
@@ -22,7 +22,7 @@
                 <p>The environment is not separate from us — it is our home, our food, our water, and our future. As forests shrink, species disappear, and the climate shifts, we are reminded that protecting nature is the same as protecting our own lives.</p>
                 <p>By <em>signing up</em> you add to a movement that grows stronger. Fill out the form below and take your step toward <em>change</em>.</p>
             </header>
-            <form class="signup-form" action="index.php" method="post">
+            <form class="signup-form" action="/" method="post">
                 <fieldset>
                     <legend>Let's do this</legend>
                     <p>Required Fields are specified with <span aria-label="Required">*</span></p>
@@ -98,13 +98,17 @@
         confirmPwd.addEventListener('input', checkValue);
     
         form.addEventListener('submit', e => {
-            if (isInValid) e.preventDefault()
+            if (isInValid) {
+                e.preventDefault()
+                alert("Passwords don't match")
+            }
         })
 
         function checkValue(e) {
             const value1 = pwd.value;
             const value2 = confirmPwd.value;
             if (value1 === value2) {
+                isInValid = false;
                 pwd.classList.remove('invalid')
                 confirmPwd.classList.remove('invalid')
                 pwd.classList.add('valid')
